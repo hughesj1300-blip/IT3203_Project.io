@@ -99,3 +99,9 @@ form button:hover {
   background: #ffcc00;
   color: #333;
 }
+pre {
+  display: block;
+  font-family: monospace;
+  white-space: pre;
+  margin: 2em 0;
+}
