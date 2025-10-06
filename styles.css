@@ -73,7 +73,7 @@ footer {
 }
 
 footer a {
-  color: orange;
+  color: #ffcc00;
 }
 
 footer a:hover {
@@ -81,7 +81,7 @@ footer a:hover {
 }
 
 footer a:visited {
-  color: yellow;
+  color: orange;
 }
 
 /* Form styling (for contact page) */
