@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Quiz Page</title>
   <link rel="stylesheet" href="styles.css">
   <style>
@@ -32,6 +33,15 @@
 <body>
   <header>
     <h1>Knowledge Check Quiz</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="topic 1.html">Topic 1 - Web Browsers</a></li>
+        <li><a href="topic 2.html">Quiz</a></li>
+        <li><a href="key concepts.html">Key Concepts</a></li>
+        <li><a href="references.html">References</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
   </header>
 
   <main>
@@ -89,7 +99,8 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 Quiz Site. All rights reserved.</p>
+    <p>IT3203 Fall 2025 - J. Hughes, M. Jeffreys</p>
+    <p>Visit the class website <a href="https://ksuweb.github.io/IT3203/">here</a>.</p>
   </footer>
 
   <script>
