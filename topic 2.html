@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Topic 2</title>
+    <title>Quiz</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -13,7 +13,7 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="topic 1.html">Topic 1 - Web Browsers</a></li>
-          <li><a href="topic 2.html">Topic 2</a></li>
+          <li><a href="topic 2.html">Quiz</a></li>
           <li><a href="key concepts.html">Key Concepts</a></li>
           <li><a href="references.html">References</a></li>
           <li><a href="about.html">About</a></li>
@@ -21,10 +21,128 @@
       </nav>
     </header>
 
-    <main> <!-- main content section -->
-      <h2>Topic 2</h2>
-      <p>What is topic 2 and what is it about. Maybe enter a comparison chart or table here as well</p>
-    </main>
+   <main class="container">
+<div class="card">
+<h1>IT3203 Site Quiz</h1>
+<p class="muted">Answer all questions and submit to see instant results. Pass mark: <strong>70%</strong>.</p>
+<form id="quizForm" novalidate>
+<fieldset>
+<legend>Q1 · Fill in the blank</legend>
+<p class="q">How many people contributed to this site?</p>
+<input type="text" id="q1" placeholder="Enter number" autocomplete="off">
+</fieldset>
+<fieldset>
+<legend>Q2 · Single choice</legend>
+<p class="q">What class is this site for?</p>
+<label><input type="radio" name="q2" value="IT3203"> IT3203</label>
+<label><input type="radio" name="q2" value="IT4200"> IT4200</label>
+<label><input type="radio" name="q2" value="CS1000"> CS1000</label>
+<label><input type="radio" name="q2" value="MATH1101"> MATH1101</label>
+</fieldset>
+<fieldset>
+<legend>Q3 · Single choice</legend>
+<p class="q">What is the main topic discussed on this site?</p>
+<label><input type="radio" name="q3" value="Web Browsers"> Web Browsers</label>
+<label><input type="radio" name="q3" value="Operating Systems"> Operating Systems</label>
+<label><input type="radio" name="q3" value="Hardware"> Hardware</label>
+<label><input type="radio" name="q3" value="Networking"> Networking</label>
+</fieldset>
+<fieldset>
+<legend>Q4 · Single choice</legend>
+<p class="q">What does Google call their web browser?</p>
+<label><input type="radio" name="q4" value="Chrome"> Chrome</label>
+<label><input type="radio" name="q4" value="Edge"> Edge</label>
+<label><input type="radio" name="q4" value="Safari"> Safari</label>
+<label><input type="radio" name="q4" value="Firefox"> Firefox</label>
+</fieldset>
+<fieldset>
+<legend>Q5 · Multi‑selection</legend>
+<p class="q">Select all web browsers from below:</p>
+<label><input type="checkbox" name="q5" value="chrome"> Chrome</label>
+<label><input type="checkbox" name="q5" value="firefox"> Firefox</label>
+<label><input type="checkbox" name="q5" value="Safari"> Safari</label>
+<label><input type="checkbox" name="q5" value="Edge"> Edge</label>
+<label><input type="checkbox" name="q5" value="YouTube"> YouTube</label>
+</fieldset>
+<div class="actions">
+<button type="submit">Submit Quiz</button>
+<button type="button" id="resetBtn">Reset / Retake</button>
+</div>
+</form>
+<section id="results" style="display:none"></section>
+</div>
+</main>
+<script>
+const PASS_PCT = 70;
+const ANSWERS = {
+  const PASS_PCT = 70;
+const ANSWERS = {
+q1: { type: 'text', correct: '2' },
+q2: { type: 'single', correct: 'IT3203' },
+q3: { type: 'single', correct: 'Web Browsers' },
+q4: { type: 'single', correct: 'Chrome' },
+q5: { type: 'multi', correct: ['chrome','firefox','Safari','Edge'] }
+};
+
+
+const form = document.getElementById('quizForm');
+const results = document.getElementById('results');
+const resetBtn = document.getElementById('resetBtn');
+
+
+form.addEventListener('submit', e => {
+e.preventDefault();
+let correctCount = 0;
+const totalQuestions = Object.keys(ANSWERS).length;
+const feedback = [];
+
+
+const a1 = (document.getElementById('q1').value || '').trim();
+const ok1 = a1 === ANSWERS.q1.correct;
+correctCount += ok1 ? 1 : 0;
+feedback.push({id:'Q1', ok:ok1, user:a1||'—', expected:'2'});
+
+
+const a2 = (new FormData(form).get('q2')||'');
+const ok2 = a2 === ANSWERS.q2.correct;
+correctCount += ok2 ? 1 : 0;
+feedback.push({id:'Q2', ok:ok2, user:a2||'—', expected:'IT3203'});
+
+
+const a3 = (new FormData(form).get('q3')||'');
+const ok3 = a3 === ANSWERS.q3.correct;
+correctCount += ok3 ? 1 : 0;
+feedback.push({id:'Q3', ok:ok3, user:a3||'—', expected:'Web Browsers'});
+
+
+const a4 = (new FormData(form).get('q4')||'');
+const ok4 = a4 === ANSWERS.q4.correct;
+correctCount += ok4 ? 1 : 0;
+feedback.push({id:'Q4', ok:ok4, user:a4||'—', expected:'Chrome'});
+
+
+const checked = [...document.querySelectorAll('input[name="q5"]:checked')].map(el=>el.value);
+const correctSet = new Set(ANSWERS.q5.correct);
+const userSet = new Set(checked);
+const ok5 = correctSet.size===userSet.size && [...correctSet].every(v=>userSet.has(v));
+correctCount += ok5 ? 1 : 0;
+feedback.push({id:'Q5', ok:ok5, user:checked.length?checked.join(', '):'—', expected:ANSWERS.q5.correct.join(', ')});
+
+
+const pct = Math.round((correctCount/totalQuestions)*100);
+const passed = pct >= PASS_PCT;
+const rows = feedback.map(row=>`<div class='result-row'><div><strong>${row.id}</strong> Your: <span class='answer'>${row.user}</span> | Correct: <span class='answer'>${row.expected}</span></div><div class='badge ${row.ok?'ok':'bad'}'>${row.ok?'Correct':'Incorrect'}</div></div>`).join('');
+results.innerHTML = `<div class='summary ${passed?'pass':'fail'}'><h2>${passed?'✅ Pass':'❌ Fail'}</h2><p>Total Score: ${correctCount}/${totalQuestions} (${pct}%)</p></div>${rows}`;
+results.style.display='block';
+});
+
+
+resetBtn.addEventListener('click',()=>{
+form.reset();
+results.style.display='none';
+results.innerHTML='';
+});
+</script>
 
     <footer> <!-- footer section to include course info -->
       <p>IT3203 Fall 2025 - J. Hughes, M. Jeffreys</p>
