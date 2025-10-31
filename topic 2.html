@@ -88,74 +88,64 @@ input[type="text"], select{width:100%;padding:8px;border:1px solid #cbd5e1;borde
 </div>
 </main>
 <script>
-const PASS_PCT = 70;
-const ANSWERS = {
-  const PASS_PCT = 70;
-const ANSWERS = {
-q1: { type: 'text', correct: '2' },
-q2: { type: 'single', correct: 'IT3203' },
-q3: { type: 'single', correct: 'Web Browsers' },
-q4: { type: 'single', correct: 'Chrome' },
-q5: { type: 'multi', correct: ['chrome','firefox','Safari','Edge'] }
-};
-
-
-const form = document.getElementById('quizForm');
-const results = document.getElementById('results');
-const resetBtn = document.getElementById('resetBtn');
-
-
-form.addEventListener('submit', e => {
-e.preventDefault();
+const fd = new FormData(form);
 let correctCount = 0;
 const totalQuestions = Object.keys(ANSWERS).length;
 const feedback = [];
 
 
-const a1 = (document.getElementById('q1').value || '').trim();
+const a1raw = (document.getElementById('q1').value || '').trim();
+const a1 = a1raw.replace(/\D+/g,'');
 const ok1 = a1 === ANSWERS.q1.correct;
 correctCount += ok1 ? 1 : 0;
-feedback.push({id:'Q1', ok:ok1, user:a1||'—', expected:'2'});
+feedback.push({ id:'Q1', ok: ok1, user: a1raw || '—', expected: '2' });
 
 
-const a2 = (new FormData(form).get('q2')||'');
-const ok2 = a2 === ANSWERS.q2.correct;
-correctCount += ok2 ? 1 : 0;
-feedback.push({id:'Q2', ok:ok2, user:a2||'—', expected:'IT3203'});
-
-
-const a3 = (new FormData(form).get('q3')||'');
-const ok3 = a3 === ANSWERS.q3.correct;
-correctCount += ok3 ? 1 : 0;
-feedback.push({id:'Q3', ok:ok3, user:a3||'—', expected:'Web Browsers'});
-
-
-const a4 = (new FormData(form).get('q4')||'');
-const ok4 = a4 === ANSWERS.q4.correct;
-correctCount += ok4 ? 1 : 0;
-feedback.push({id:'Q4', ok:ok4, user:a4||'—', expected:'Chrome'});
-
-
-const checked = [...document.querySelectorAll('input[name="q5"]:checked')].map(el=>el.value);
-const correctSet = new Set(ANSWERS.q5.correct);
-const userSet = new Set(checked);
-const ok5 = correctSet.size===userSet.size && [...correctSet].every(v=>userSet.has(v));
-correctCount += ok5 ? 1 : 0;
-feedback.push({id:'Q5', ok:ok5, user:checked.length?checked.join(', '):'—', expected:ANSWERS.q5.correct.join(', ')});
-
-
-const pct = Math.round((correctCount/totalQuestions)*100);
-const passed = pct >= PASS_PCT;
-const rows = feedback.map(row=>`<div class='result-row'><div><strong>${row.id}</strong> Your: <span class='answer'>${row.user}</span> | Correct: <span class='answer'>${row.expected}</span></div><div class='badge ${row.ok?'ok':'bad'}'>${row.ok?'Correct':'Incorrect'}</div></div>`).join('');
-results.innerHTML = `<div class='summary ${passed?'pass':'fail'}'><h2>${passed?'✅ Pass':'❌ Fail'}</h2><p>Total Score: ${correctCount}/${totalQuestions} (${pct}%)</p></div>${rows}`;
-results.style.display='block';
+['q2','q3','q4'].forEach((qid, idx) => {
+const user = (fd.get(qid) || '').toString();
+const ok = user === ANSWERS[qid].correct;
+correctCount += ok ? 1 : 0;
+feedback.push({ id:`Q${idx+2}`, ok, user: user || '—', expected: ANSWERS[qid].correct });
 });
 
 
-resetBtn.addEventListener('click',()=>{
+const checked = Array.from(document.querySelectorAll('input[name="q5"]:checked')).map(el => el.value);
+const correctSet = new Set(ANSWERS.q5.correct);
+const userSet = new Set(checked);
+const ok5 = correctSet.size === userSet.size && [...correctSet].every(v => userSet.has(v));
+correctCount += ok5 ? 1 : 0;
+feedback.push({ id:'Q5', ok: ok5, user: checked.length ? checked.join(', ') : '—', expected: ANSWERS.q5.correct.join(', ') });
+
+
+const pct = Math.round((correctCount / totalQuestions) * 100);
+const passed = pct >= PASS_PCT;
+
+
+const rows = feedback.map(row => `
+<div class="result-row">
+<div><strong>${row.id}</strong> — Your: <span class="answer">${row.user}</span> · Correct: <span class="answer">${row.expected}</span></div>
+<div class="badge ${row.ok ? 'ok' : 'bad'}">${row.ok ? 'Correct' : 'Incorrect'}</div>
+</div>`).join('');
+
+
+results.innerHTML = `
+<h2 style="margin:0 0 8px">Results</h2>
+<div class="summary ${passed ? 'pass' : 'fail'}">
+<strong>${passed ? '✅ Pass' : '❌ Fail'}</strong>
+<div>Total Score: ${correctCount}/${totalQuestions} (${pct}%)</div>
+</div>
+${rows}`;
+results.style.display = 'block';
+results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+
+resetBtn.addEventListener('click', () => {
 form.reset();
-results.style.display='none';
-results.innerHTML='';
+results.style.display = 'none';
+results.innerHTML = '';
+const first = form.querySelector('input,select,button,textarea');
+if (first) first.focus();
 });
 </script>
 
