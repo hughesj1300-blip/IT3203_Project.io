@@ -3,12 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>IT3203 Project - Home</title> 
+    <title>Self-assessment Quiz</title> 
     <link rel="stylesheet" href="styles.css"> 
+    <script src="quizScript.js"></script>
   </head>
   <body>
     <Header>
-      <h1>Welcome to our IT3203 Project</h1> 
+      <h1>Self-assessment Quiz</h1> 
       <nav> <!--navigation menu-->
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -23,12 +24,21 @@
     </Header>
     <br>
     <main>  <!-- main content section -->
-      <p>This is our webpage for IT 3203 class at KSU. </p>
-      <p>We are learning web development so this will be a work in progress throughout the semester.</p>
-      <p>We are excited to work on this project and build more web pages!</p>
+      <p>Here's a quick self-assessment quiz to test your knowledge.</p>
       <br>
-      <p>Thanks for visiting!</p>
-      <p>-Jason and Matthew</p>
+      <form>
+        <div id="q1">
+          <p>1. Select answer B</p>
+            <input type="radio" name="q1" value="incorrect" id="q1A"><label for="q1A">Answer A</label><br>
+            <input type="radio" name="q1" value="correct" id="q1B"><label for="q1B">Answer B</label><br>
+            <input type="radio" name="q1" value="incorrect" id="q1C"><label for="q1C">Answer C</label><br>
+            <input type="radio" name="q1" value="incorrect" id="q1D"><label for="q1D">Answer D</label><br>
+        </div>
+        <div>
+
+        </div>
+        <input type="submit" value="Submit">
+      </form>
     </main>
     <footer> <!-- footer section to include course info -->
       <p>IT3203 Fall 2025 - J. Hughes, M. Jeffreys</p>
