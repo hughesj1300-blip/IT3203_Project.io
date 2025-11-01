@@ -3,32 +3,17 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Quiz</title>
+    <title>Topic 2</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-fieldset{border:1px solid #ddd;border-radius:8px;padding:12px}
-legend{font-weight:700}
-label{display:block;margin:.25rem 0}
-input[type="text"], select{width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:6px}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
-.summary{margin-top:16px;border-radius:6px;padding:12px;background:#f6f8fa;border:1px solid #ddd}
-.summary.pass{background:#e8f5e9;border-color:#c8e6c9}
-.summary.fail{background:#ffebee;border-color:#ffcdd2}
-.result-row{display:flex;justify-content:space-between;border-top:1px dashed #ddd;padding:8px 4px}
-.badge{font-size:12px;font-weight:800;padding:2px 8px;border-radius:999px}
-.badge.ok{background:#dcfce7;color:#166534}
-.badge.bad{background:#fee2e2;color:#991b1b}
-.answer{font-family:ui-monospace, Menlo, Consolas, monospace;color:#334155}
-</style>
   </head>
   <body>
     <header>
-      <h1>Quiz</h1>
+      <h1>Topic 2</h1>
       <nav> <!--navigation menu-->
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="topic 1.html">Topic 1 - Web Browsers</a></li>
-          <li><a href="topic 2.html">Quiz</a></li>
+          <li><a href="topic 2.html">Topic 2</a></li>
           <li><a href="key concepts.html">Key Concepts</a></li>
           <li><a href="quiz.html">Quiz</a></li>
           <li><a href="references.html">References</a></li>
@@ -37,118 +22,10 @@ input[type="text"], select{width:100%;padding:8px;border:1px solid #cbd5e1;borde
       </nav>
     </header>
 
-   <main class="container">
-<div class="card">
-<h1>IT3203 Site Quiz</h1>
-<p class="muted">Answer all questions and submit to see instant results. Pass mark: <strong>70%</strong>.</p>
-<form id="quizForm" novalidate>
-<fieldset>
-<legend>Q1 · Fill in the blank</legend>
-<p class="q">How many people contributed to this site?</p>
-<input type="text" id="q1" placeholder="Enter number" autocomplete="off">
-</fieldset>
-<fieldset>
-<legend>Q2 · Single choice</legend>
-<p class="q">What class is this site for?</p>
-<label><input type="radio" name="q2" value="IT3203"> IT3203</label>
-<label><input type="radio" name="q2" value="IT4200"> IT4200</label>
-<label><input type="radio" name="q2" value="CS1000"> CS1000</label>
-<label><input type="radio" name="q2" value="MATH1101"> MATH1101</label>
-</fieldset>
-<fieldset>
-<legend>Q3 · Single choice</legend>
-<p class="q">What is the main topic discussed on this site?</p>
-<label><input type="radio" name="q3" value="Web Browsers"> Web Browsers</label>
-<label><input type="radio" name="q3" value="Operating Systems"> Operating Systems</label>
-<label><input type="radio" name="q3" value="Hardware"> Hardware</label>
-<label><input type="radio" name="q3" value="Networking"> Networking</label>
-</fieldset>
-<fieldset>
-<legend>Q4 · Single choice</legend>
-<p class="q">What does Google call their web browser?</p>
-<label><input type="radio" name="q4" value="Chrome"> Chrome</label>
-<label><input type="radio" name="q4" value="Edge"> Edge</label>
-<label><input type="radio" name="q4" value="Safari"> Safari</label>
-<label><input type="radio" name="q4" value="Firefox"> Firefox</label>
-</fieldset>
-<fieldset>
-<legend>Q5 · Multi‑selection</legend>
-<p class="q">Select all web browsers from below:</p>
-<label><input type="checkbox" name="q5" value="chrome"> Chrome</label>
-<label><input type="checkbox" name="q5" value="firefox"> Firefox</label>
-<label><input type="checkbox" name="q5" value="Safari"> Safari</label>
-<label><input type="checkbox" name="q5" value="Edge"> Edge</label>
-<label><input type="checkbox" name="q5" value="YouTube"> YouTube</label>
-</fieldset>
-<div class="actions">
-<button type="submit">Submit Quiz</button>
-<button type="reset" id="resetBtn">Reset / Retake</button>
-</div>
-</form>
-<section id="results" style="display:none"></section>
-</div>
-</main>
-<script>
-const fd = new FormData(form);
-let correctCount = 0;
-const totalQuestions = Object.keys(ANSWERS).length;
-const feedback = [];
-
-
-const a1raw = (document.getElementById('q1').value || '').trim();
-const a1 = a1raw.replace(/\D+/g,'');
-const ok1 = a1 === ANSWERS.q1.correct;
-correctCount += ok1 ? 1 : 0;
-feedback.push({ id:'Q1', ok: ok1, user: a1raw || '—', expected: '2' });
-
-
-['q2','q3','q4'].forEach((qid, idx) => {
-const user = (fd.get(qid) || '').toString();
-const ok = user === ANSWERS[qid].correct;
-correctCount += ok ? 1 : 0;
-feedback.push({ id:`Q${idx+2}`, ok, user: user || '—', expected: ANSWERS[qid].correct });
-});
-
-
-const checked = Array.from(document.querySelectorAll('input[name="q5"]:checked')).map(el => el.value);
-const correctSet = new Set(ANSWERS.q5.correct);
-const userSet = new Set(checked);
-const ok5 = correctSet.size === userSet.size && [...correctSet].every(v => userSet.has(v));
-correctCount += ok5 ? 1 : 0;
-feedback.push({ id:'Q5', ok: ok5, user: checked.length ? checked.join(', ') : '—', expected: ANSWERS.q5.correct.join(', ') });
-
-
-const pct = Math.round((correctCount / totalQuestions) * 100);
-const passed = pct >= PASS_PCT;
-
-
-const rows = feedback.map(row => `
-<div class="result-row">
-<div><strong>${row.id}</strong> — Your: <span class="answer">${row.user}</span> · Correct: <span class="answer">${row.expected}</span></div>
-<div class="badge ${row.ok ? 'ok' : 'bad'}">${row.ok ? 'Correct' : 'Incorrect'}</div>
-</div>`).join('');
-
-
-results.innerHTML = `
-<h2 style="margin:0 0 8px">Results</h2>
-<div class="summary ${passed ? 'pass' : 'fail'}">
-<strong>${passed ? '✅ Pass' : '❌ Fail'}</strong>
-<div>Total Score: ${correctCount}/${totalQuestions} (${pct}%)</div>
-</div>
-${rows}`;
-results.style.display = 'block';
-results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
-
-
-resetBtn.addEventListener('click', () => {
-form.reset();
-results.style.display = 'none';
-results.innerHTML = '';
-const first = form.querySelector('input,select,button,textarea');
-if (first) first.focus();
-});
-</script>
+    <main> <!-- main content section -->
+      <h2>Topic 2</h2>
+      <p>What is topic 2 and what is it about. Maybe enter a comparison chart or table here as well</p>
+    </main>
 
     <footer> <!-- footer section to include course info -->
       <p>IT3203 Fall 2025 - J. Hughes, M. Jeffreys</p>
