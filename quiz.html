@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Self-assessment Quiz</title> 
+    <link rel="stylesheet" href="styles.css"> 
+    <script src="quizScript.js"></script>
+  </head>
+  <body>
+    <Header>
+      <h1>Self-assessment Quiz</h1> 
+      <nav> <!--navigation menu-->
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="topic 1.html">Topic 1 - Web Browsers</a></li>
+          <li><a href="topic 2.html">Topic 2</a></li>
+          <li><a href="key concepts.html">Key Concepts</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="references.html">References</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </Header>
+    <br>
+    <main>  <!-- main content section -->
+      <div class="card">
+      <h1>IT3203 Site Quiz</h1>
+      <p class="muted">Answer all questions and submit to see instant results. Pass mark: <strong>70%</strong>.</p>
+      <form id="quizForm" novalidate>
+        <fieldset>
+          <legend>Q1 · Fill in the blank</legend>
+          <p class="q">How many people contributed to this site?</p>
+          <input type="text" id="q1" placeholder="Enter number" autocomplete="off">
+        </fieldset>
+        <fieldset>
+          <legend>Q2 · Single choice</legend>
+          <p class="q">What class is this site for?</p>
+          <label><input type="radio" name="q2" value="IT3203"> IT3203</label>
+          <label><input type="radio" name="q2" value="IT4200"> IT4200</label>
+          <label><input type="radio" name="q2" value="CS1000"> CS1000</label>
+          <label><input type="radio" name="q2" value="MATH1101"> MATH1101</label>
+        </fieldset>
+        <fieldset>
+          <legend>Q3 · Single choice</legend>
+          <p class="q">What is the main topic discussed on this site?</p>
+          <label><input type="radio" name="q3" value="Web Browsers"> Web Browsers</label>
+          <label><input type="radio" name="q3" value="Operating Systems"> Operating Systems</label>
+          <label><input type="radio" name="q3" value="Hardware"> Hardware</label>
+          <label><input type="radio" name="q3" value="Networking"> Networking</label>
+        </fieldset>
+        <fieldset>
+          <legend>Q4 · Single choice</legend>
+          <p class="q">What does Google call their web browser?</p>
+          <label><input type="radio" name="q4" value="Chrome"> Chrome</label>
+          <label><input type="radio" name="q4" value="Edge"> Edge</label>
+          <label><input type="radio" name="q4" value="Safari"> Safari</label>
+          <label><input type="radio" name="q4" value="Firefox"> Firefox</label>
+        </fieldset>
+        <fieldset>
+          <legend>Q5 · Multi‑selection</legend>
+          <p class="q">Select all web browsers from below:</p>
+          <label><input type="checkbox" name="q5" value="chrome"> Chrome</label>
+          <label><input type="checkbox" name="q5" value="firefox"> Firefox</label>
+          <label><input type="checkbox" name="q5" value="Safari"> Safari</label>
+          <label><input type="checkbox" name="q5" value="Edge"> Edge</label>
+          <label><input type="checkbox" name="q5" value="YouTube"> YouTube</label>
+        </fieldset>
+        <div class="actions">
+          <button type="submit">Submit Quiz</button>
+          <button type="reset" id="resetBtn">Reset / Retake</button>
+        </div>
+      </form>
+      <section id="results" style="display:none"></section>
+      </div>
+    </main>
+    <footer> <!-- footer section to include course info -->
+      <p>IT3203 Fall 2025 - J. Hughes, M. Jeffreys</p>
+      <p>Visit the class website <a href="https://ksuweb.github.io/IT3203/">here</a>.</p>
+    </footer>
+  </body>
+</html>
