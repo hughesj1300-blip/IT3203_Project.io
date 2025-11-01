@@ -50,7 +50,7 @@ results.innerHTML = `
 ${rows}`;
 results.style.display = 'block';
 results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
+});
 
 resetBtn.addEventListener('click', () => {
 form.reset();
