@@ -1,3 +1,6 @@
+submitBtn.addEventListener('click', (event) => {
+  event.preventDefault(); // Prevent page reload
+
 const fd = new FormData(form);
 let correctCount = 0;
 const totalQuestions = Object.keys(ANSWERS).length;
