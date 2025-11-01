@@ -1,4 +1,4 @@
-submitBtn.addEventListener('click', (event) => {
+submitBtn.addEventListener('click', function(event) {
   event.preventDefault(); // Prevent page reload
 
 const fd = new FormData(form);
