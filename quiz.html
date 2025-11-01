@@ -24,21 +24,55 @@
     </Header>
     <br>
     <main>  <!-- main content section -->
-      <p>Here's a quick self-assessment quiz to test your knowledge.</p>
-      <br>
-      <form>
-        <div id="q1">
-          <p>1. Select answer B</p>
-            <input type="radio" name="q1" value="incorrect" id="q1A"><label for="q1A">Answer A</label><br>
-            <input type="radio" name="q1" value="correct" id="q1B"><label for="q1B">Answer B</label><br>
-            <input type="radio" name="q1" value="incorrect" id="q1C"><label for="q1C">Answer C</label><br>
-            <input type="radio" name="q1" value="incorrect" id="q1D"><label for="q1D">Answer D</label><br>
+      <div class="card">
+      <h1>IT3203 Site Quiz</h1>
+      <p class="muted">Answer all questions and submit to see instant results. Pass mark: <strong>70%</strong>.</p>
+      <form id="quizForm" novalidate>
+        <fieldset>
+          <legend>Q1 · Fill in the blank</legend>
+          <p class="q">How many people contributed to this site?</p>
+          <input type="text" id="q1" placeholder="Enter number" autocomplete="off">
+        </fieldset>
+        <fieldset>
+          <legend>Q2 · Single choice</legend>
+          <p class="q">What class is this site for?</p>
+          <label><input type="radio" name="q2" value="IT3203"> IT3203</label>
+          <label><input type="radio" name="q2" value="IT4200"> IT4200</label>
+          <label><input type="radio" name="q2" value="CS1000"> CS1000</label>
+          <label><input type="radio" name="q2" value="MATH1101"> MATH1101</label>
+        </fieldset>
+        <fieldset>
+          <legend>Q3 · Single choice</legend>
+          <p class="q">What is the main topic discussed on this site?</p>
+          <label><input type="radio" name="q3" value="Web Browsers"> Web Browsers</label>
+          <label><input type="radio" name="q3" value="Operating Systems"> Operating Systems</label>
+          <label><input type="radio" name="q3" value="Hardware"> Hardware</label>
+          <label><input type="radio" name="q3" value="Networking"> Networking</label>
+        </fieldset>
+        <fieldset>
+          <legend>Q4 · Single choice</legend>
+          <p class="q">What does Google call their web browser?</p>
+          <label><input type="radio" name="q4" value="Chrome"> Chrome</label>
+          <label><input type="radio" name="q4" value="Edge"> Edge</label>
+          <label><input type="radio" name="q4" value="Safari"> Safari</label>
+          <label><input type="radio" name="q4" value="Firefox"> Firefox</label>
+        </fieldset>
+        <fieldset>
+          <legend>Q5 · Multi‑selection</legend>
+          <p class="q">Select all web browsers from below:</p>
+          <label><input type="checkbox" name="q5" value="chrome"> Chrome</label>
+          <label><input type="checkbox" name="q5" value="firefox"> Firefox</label>
+          <label><input type="checkbox" name="q5" value="Safari"> Safari</label>
+          <label><input type="checkbox" name="q5" value="Edge"> Edge</label>
+          <label><input type="checkbox" name="q5" value="YouTube"> YouTube</label>
+        </fieldset>
+        <div class="actions">
+          <button type="submit">Submit Quiz</button>
+          <button type="reset" id="resetBtn">Reset / Retake</button>
         </div>
-        <div>
-
-        </div>
-        <input type="submit" value="Submit">
       </form>
+      <section id="results" style="display:none"></section>
+      </div>
     </main>
     <footer> <!-- footer section to include course info -->
       <p>IT3203 Fall 2025 - J. Hughes, M. Jeffreys</p>
