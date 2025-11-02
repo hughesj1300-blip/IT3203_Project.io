@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Self-assessment Quiz</title> 
     <link rel="stylesheet" href="styles.css"> 
-    <script src="quizScript.js"></script>
   </head>
   <body>
     <Header>
@@ -27,11 +26,11 @@
       <div class="card">
       <h1>IT3203 Site Quiz</h1>
       <p class="muted">Answer all questions and submit to see instant results. Pass mark: <strong>70%</strong>.</p>
-      <form id="quizForm" novalidate>
+      <form id="quizForm">
         <fieldset>
           <legend>Q1 · Fill in the blank</legend>
           <p class="q">How many people contributed to this site?</p>
-          <input type="text" id="q1" placeholder="Enter number" autocomplete="off">
+          <input type="text" name="q1" placeholder="Enter number" autocomplete="off">
         </fieldset>
         <fieldset>
           <legend>Q2 · Single choice</legend>
@@ -67,8 +66,8 @@
           <label><input type="checkbox" name="q5" value="YouTube"> YouTube</label>
         </fieldset>
         <div class="actions">
-          <button type="submit" id="submitBtn">Submit Quiz</button>
-          <button type="reset" id="resetBtn">Reset / Retake</button>
+          <input type="button" onclick="evaluateQuiz()" value="Submit">
+          <input type="reset">
         </div>
       </form>
       <section id="results" style="display:none"></section>
@@ -78,5 +77,6 @@
       <p>IT3203 Fall 2025 - J. Hughes, M. Jeffreys</p>
       <p>Visit the class website <a href="https://ksuweb.github.io/IT3203/">here</a>.</p>
     </footer>
+    <script src="quizScript.js"></script>
   </body>
 </html>
