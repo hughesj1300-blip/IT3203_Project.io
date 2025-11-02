@@ -1,5 +1,66 @@
 function evaluateQuiz() {
-    console.log("Evaluating")
+    const totalQuestions = 5;
+    let correctCount = 0;
+    const q1answer = 2;
+    const q5answer =  ["correct", "correct", "correct"];
+    let q5selection = [];
+
+    if (quizForm.q1.value == q1answer) {
+        correctCount += 1;
+        document.getElementById("q1feedback").innerHTML = "Correct"
+    }
+    else {
+        document.getElementById("q1feedback").innerHTML = "Incorrect"
+    }
+
+    if (document.querySelectorAll("input[name='q2']:checked")[0].value == "correct") {
+        correctCount += 1;
+        document.getElementById("q2feedback").innerHTML = "Correct"
+    }
+    else {
+        document.getElementById("q2feedback").innerHTML = "Incorrect"
+    }
+
+    if (document.querySelectorAll("input[name='q3']:checked")[0].value == "correct") {
+        correctCount += 1;
+        document.getElementById("q3feedback").innerHTML = "Correct"
+    }
+    else {
+        document.getElementById("q3feedback").innerHTML = "Incorrect"
+    }
+    
+    if (document.querySelectorAll("input[name='q4']:checked")[0].value == "correct") {
+        correctCount += 1;
+        document.getElementById("q4feedback").innerHTML = "Correct"
+    }
+    else {
+        document.getElementById("q4feedback").innerHTML = "Incorrect"
+    }
+    
+    for (let i = 0; i < document.querySelectorAll("input[name='q5']:checked").length; i++) {
+        q5selection.push(document.querySelectorAll("input[name='q5']:checked")[i].value);
+    }
+    
+    if (q5selection.toString() == q5answer.toString()) {
+        correctCount += 1;
+        document.getElementById("q5feedback").innerHTML = "Correct"
+    }
+    else {
+        document.getElementById("q5feedback").innerHTML = "Incorrect"
+    }
+}
+
+function resetQuiz() {
+    document.getElementById("q1feedback").innerHTML = ""
+    document.getElementById("q2feedback").innerHTML = ""
+    document.getElementById("q3feedback").innerHTML = ""
+    document.getElementById("q4feedback").innerHTML = ""
+    document.getElementById("q5feedback").innerHTML = ""
+}
+
+/*
+submitBtn.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent page reload
     const fd = new FormData(document.getElementById("quizForm"));
     let correctCount = 0;
     const totalQuestions = Object.keys(ANSWERS).length;
@@ -49,7 +110,8 @@ function evaluateQuiz() {
     ${rows}`;
     results.style.display = 'block';
     results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
+*/
+
 
 /*
 resetBtn.addEventListener('click', () => {
@@ -58,4 +120,5 @@ resetBtn.addEventListener('click', () => {
     results.innerHTML = '';
     const first = form.querySelector('input,select,button,textarea');
     if (first) first.focus();
-});*/
+});
+*/
