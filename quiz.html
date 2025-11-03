@@ -8,7 +8,7 @@
   </head>
   <body>
     <Header>
-      <h1>Self-assessment Quiz</h1> 
+      <h1>Quiz</h1> 
       <nav> <!--navigation menu-->
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -24,58 +24,58 @@
     <br>
     <main>  <!-- main content section -->
       <div class="card">
-      <h1>IT3203 Site Quiz</h1>
-      <p class="muted">Answer all questions and submit to see instant results. Pass mark: <strong>70%</strong>.</p>
+      <h1>Self-assessment quiz</h1>
+      <p class="muted">Answer all questions and press submit to see results. Pass mark: <strong>70%</strong>.</p><br>
       <form id="quizForm">
         <fieldset id="q1field">
-          <legend>Q1 · Fill in the blank</legend>
+          <legend>Question 1</legend>
           <p class="q">How many people contributed to this site?</p>
           <input type="text" name="q1" placeholder="Enter number" autocomplete="off">
-          <p id="q1feedback"></p>
-        </fieldset>
+          <div id="q1feedback"></div>
+        </fieldset><br>
         <fieldset id="q2field">
-          <legend>Q2 · Single choice</legend>
+          <legend>Question 2</legend>
           <p class="q">What class is this site for?</p>
           <label><input type="radio" name="q2" value="correct"> IT3203</label>
           <label><input type="radio" name="q2" value="incorrect"> IT4200</label>
           <label><input type="radio" name="q2" value="incorrect"> CS1000</label>
           <label><input type="radio" name="q2" value="incorrect"> MATH1101</label>
-          <p id="q2feedback"></p>
-        </fieldset>
+          <div id="q2feedback"></div>
+        </fieldset><br>
         <fieldset id="q3field">
-          <legend>Q3 · Single choice</legend>
+          <legend>Question 3</legend>
           <p class="q">What is the main topic discussed on this site?</p>
           <label><input type="radio" name="q3" value="correct"> Web Browsers</label>
           <label><input type="radio" name="q3" value="incorrect"> Operating Systems</label>
           <label><input type="radio" name="q3" value="incorrect"> Hardware</label>
           <label><input type="radio" name="q3" value="incorrect"> Networking</label>
-          <p id="q3feedback"></p>
-        </fieldset>
+          <div id="q3feedback"></div>
+        </fieldset><br>
         <fieldset id="q4field">
-          <legend>Q4 · Single choice</legend>
+          <legend>Question 4</legend>
           <p class="q">What does Google call their web browser?</p>
           <label><input type="radio" name="q4" value="correct"> Chrome</label>
           <label><input type="radio" name="q4" value="incorrect"> Edge</label>
           <label><input type="radio" name="q4" value="incorrect"> Safari</label>
           <label><input type="radio" name="q4" value="incorrect"> Firefox</label>
-          <p id="q4feedback"></p>
-        </fieldset>
+          <div id="q4feedback"></div>
+        </fieldset><br>
         <fieldset id="q5field">
-          <legend>Q5 · Multi‑selection</legend>
+          <legend>Question 5</legend>
           <p class="q">Select all web browsers from below:</p>
           <label><input type="checkbox" name="q5" value="correct"> Chrome</label>
           <label><input type="checkbox" name="q5" value="correct"> Firefox</label>
           <label><input type="checkbox" name="q5" value="incorrect"> GitHub</label>
           <label><input type="checkbox" name="q5" value="correct"> Edge</label>
           <label><input type="checkbox" name="q5" value="incorrect"> YouTube</label>
-          <p id="q5feedback"></p>
-        </fieldset>
+          <div id="q5feedback"></div>
+        </fieldset><br>
         <div class="actions">
           <input type="button" onclick="evaluateQuiz()" value="Submit">
           <input type="reset" onclick="resetQuiz()">
         </div>
-      </form>
-      <section id="results" style="display:none"></section>
+      </form><br>
+      <div id="results" style="display:none"></div>
       </div>
     </main>
     <footer> <!-- footer section to include course info -->

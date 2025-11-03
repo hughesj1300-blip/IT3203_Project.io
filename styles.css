@@ -165,5 +165,6 @@ input[type="text"], select {
 
 .answer {
   font-family:ui-monospace, Menlo, Consolas, monospace;
+  font-size: small;
   color:#334155
 }
