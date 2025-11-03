@@ -1,124 +1,102 @@
+//Function called when the quiz is submitted
 function evaluateQuiz() {
-    const totalQuestions = 5;
-    let correctCount = 0;
-    const q1answer = 2;
-    const q5answer =  ["correct", "correct", "correct"];
-    let q5selection = [];
+    const totalQuestions = 5; //Total number of questions
+    const passPct = 70; //Percent of correct answers needed to pass
+    let correctCount = 0; //Tracks the number of correct answers
+    const q1answer = 1990; //Used for eveluating question 1
+    const q5answer =  ["correct", "correct", "correct"]; //Used for eveluating question 5
+    let q5selection = []; //Used to hold the values submitted for question 5
 
+    //Evaluate question 1
     if (quizForm.q1.value == q1answer) {
+        //If correct...
         correctCount += 1;
-        document.getElementById("q1feedback").innerHTML = "Correct"
+        q1feedback.innerHTML = "<strong>Correct</strong>";
+        q1feedback.style.color = "green";
     }
     else {
-        document.getElementById("q1feedback").innerHTML = "Incorrect"
+        //If incorrect...
+        q1feedback.innerHTML = "<strong>Incorrect</strong><br><span class='answer'>Correct answer: 1990</span>";
+        q1feedback.style.color = "red";
     }
 
+    //Evaluate question 2
     if (document.querySelectorAll("input[name='q2']:checked")[0].value == "correct") {
+        //If correct...
         correctCount += 1;
-        document.getElementById("q2feedback").innerHTML = "Correct"
+        q2feedback.innerHTML = "<strong>Correct</strong>";
+        q2feedback.style.color = "green";
     }
     else {
-        document.getElementById("q2feedback").innerHTML = "Incorrect"
+        //If incorrect...
+        q2feedback.innerHTML = "<strong>Incorrect</strong><br><span class='answer'>Correct answer: Sir Tim Berners-Lee</span>";
+        q2feedback.style.color = "red";
     }
 
+    //Evaluate question 3
     if (document.querySelectorAll("input[name='q3']:checked")[0].value == "correct") {
+        //If correct...
         correctCount += 1;
-        document.getElementById("q3feedback").innerHTML = "Correct"
+        q3feedback.innerHTML = "<strong>Correct</strong>";
+        q3feedback.style.color = "green";
     }
     else {
-        document.getElementById("q3feedback").innerHTML = "Incorrect"
+        //If incorrect...
+        q3feedback.innerHTML = "<strong>Incorrect</strong><br><span class='answer'>Correct answer: Mosaic</span>";
+        q3feedback.style.color = "red";
     }
     
+    //Evaluate question 4
     if (document.querySelectorAll("input[name='q4']:checked")[0].value == "correct") {
+        //If correct...
         correctCount += 1;
-        document.getElementById("q4feedback").innerHTML = "Correct"
+        q4feedback.innerHTML = "<strong>Correct</strong>";
+        q4feedback.style.color = "green";
     }
     else {
-        document.getElementById("q4feedback").innerHTML = "Incorrect"
+        //If incorrect...
+        q4feedback.innerHTML = "<strong>Incorrect</strong><br><span class='answer'>Correct answer: Chrome</span>";
+        q4feedback.style.color = "red";
     }
     
+    //Store the values selected for question 5 in q5selection
     for (let i = 0; i < document.querySelectorAll("input[name='q5']:checked").length; i++) {
         q5selection.push(document.querySelectorAll("input[name='q5']:checked")[i].value);
     }
     
+    //Evaluate question 5
     if (q5selection.toString() == q5answer.toString()) {
+        //If correct...
         correctCount += 1;
-        document.getElementById("q5feedback").innerHTML = "Correct"
+        q5feedback.innerHTML = "<strong>Correct</strong>";
+        q5feedback.style.color = "green";
     }
     else {
-        document.getElementById("q5feedback").innerHTML = "Incorrect"
+        //If incorrect...
+        q5feedback.innerHTML = "<strong>Incorrect</strong><br><span class='answer'>Correct answers: Chrome, Firefox, Edge</span>";
+        q5feedback.style.color = "red";
     }
-}
 
-function resetQuiz() {
-    document.getElementById("q1feedback").innerHTML = ""
-    document.getElementById("q2feedback").innerHTML = ""
-    document.getElementById("q3feedback").innerHTML = ""
-    document.getElementById("q4feedback").innerHTML = ""
-    document.getElementById("q5feedback").innerHTML = ""
-}
+    const pct = Math.round((correctCount / totalQuestions) * 100); //Get the percentage of questions answered correctly
+    const passed = pct >= passPct; //Check if the user passed
 
-/*
-submitBtn.addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent page reload
-    const fd = new FormData(document.getElementById("quizForm"));
-    let correctCount = 0;
-    const totalQuestions = Object.keys(ANSWERS).length;
-    const feedback = [];
-
-
-    const a1raw = (document.getElementById('q1').value || '').trim();
-    const a1 = a1raw.replace(/\D+/g,'');
-    const ok1 = a1 === ANSWERS.q1.correct;
-    correctCount += ok1 ? 1 : 0;
-    feedback.push({ id:'Q1', ok: ok1, user: a1raw || '—', expected: '2' });
-
-
-    ['q2','q3','q4'].forEach((qid, idx) => {
-    const user = (fd.get(qid) || '').toString();
-    const ok = user === ANSWERS[qid].correct;
-    correctCount += ok ? 1 : 0;
-    feedback.push({ id:`Q${idx+2}`, ok, user: user || '—', expected: ANSWERS[qid].correct });
-    });
-
-
-    const checked = Array.from(document.querySelectorAll('input[name="q5"]:checked')).map(el => el.value);
-    const correctSet = new Set(ANSWERS.q5.correct);
-    const userSet = new Set(checked);
-    const ok5 = correctSet.size === userSet.size && [...correctSet].every(v => userSet.has(v));
-    correctCount += ok5 ? 1 : 0;
-    feedback.push({ id:'Q5', ok: ok5, user: checked.length ? checked.join(', ') : '—', expected: ANSWERS.q5.correct.join(', ') });
-
-
-    const pct = Math.round((correctCount / totalQuestions) * 100);
-    const passed = pct >= PASS_PCT;
-
-
-    const rows = feedback.map(row => `
-    <div class="result-row">
-    <div><strong>${row.id}</strong> — Your: <span class="answer">${row.user}</span> · Correct: <span class="answer">${row.expected}</span></div>
-    <div class="badge ${row.ok ? 'ok' : 'bad'}">${row.ok ? 'Correct' : 'Incorrect'}</div>
-    </div>`).join('');
-
-
+    //Update the results area
     results.innerHTML = `
     <h2 style="margin:0 0 8px">Results</h2>
     <div class="summary ${passed ? 'pass' : 'fail'}">
     <strong>${passed ? '✅ Pass' : '❌ Fail'}</strong>
     <div>Total Score: ${correctCount}/${totalQuestions} (${pct}%)</div>
-    </div>
-    ${rows}`;
+    </div>`;
     results.style.display = 'block';
     results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-*/
+}
 
-
-/*
-resetBtn.addEventListener('click', () => {
-    form.reset();
+//Function called when the user resets the quiz
+function resetQuiz() {
+    q1feedback.innerHTML = ""
+    q2feedback.innerHTML = ""
+    q3feedback.innerHTML = ""
+    q4feedback.innerHTML = ""
+    q5feedback.innerHTML = ""
     results.style.display = 'none';
-    results.innerHTML = '';
-    const first = form.querySelector('input,select,button,textarea');
-    if (first) first.focus();
-});
-*/
+}
