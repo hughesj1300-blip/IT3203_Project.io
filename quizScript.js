@@ -2,7 +2,7 @@ function evaluateQuiz() {
     const totalQuestions = 5;
     const passPct = 70;
     let correctCount = 0;
-    const q1answer = 2;
+    const q1answer = 1990;
     const q5answer =  ["correct", "correct", "correct"];
     let q5selection = [];
 
@@ -12,7 +12,7 @@ function evaluateQuiz() {
         q1feedback.style.color = "green";
     }
     else {
-        q1feedback.innerHTML = "<strong>Incorrect</strong><br><span class='answer'>Correct answer: 2</span>";
+        q1feedback.innerHTML = "<strong>Incorrect</strong><br><span class='answer'>Correct answer: 1990</span>";
         q1feedback.style.color = "red";
     }
 
@@ -22,7 +22,7 @@ function evaluateQuiz() {
         q2feedback.style.color = "green";
     }
     else {
-        q2feedback.innerHTML = "<strong>Incorrect</strong><br><span class='answer'>Correct answer: </span>";
+        q2feedback.innerHTML = "<strong>Incorrect</strong><br><span class='answer'>Correct answer: Sir Tim Berners-Lee</span>";
         q2feedback.style.color = "red";
     }
 
@@ -32,7 +32,7 @@ function evaluateQuiz() {
         q3feedback.style.color = "green";
     }
     else {
-        q3feedback.innerHTML = "<strong>Incorrect</strong><br><span class='answer'>Correct answer: </span>";
+        q3feedback.innerHTML = "<strong>Incorrect</strong><br><span class='answer'>Correct answer: Mosaic</span>";
         q3feedback.style.color = "red";
     }
     
@@ -42,7 +42,7 @@ function evaluateQuiz() {
         q4feedback.style.color = "green";
     }
     else {
-        q4feedback.innerHTML = "<strong>Incorrect</strong><br><span class='answer'>Correct answer: </span>";
+        q4feedback.innerHTML = "<strong>Incorrect</strong><br><span class='answer'>Correct answer: Chrome</span>";
         q4feedback.style.color = "red";
     }
     
@@ -56,7 +56,7 @@ function evaluateQuiz() {
         q5feedback.style.color = "green";
     }
     else {
-        q5feedback.innerHTML = "<strong>Incorrect</strong><br><span class='answer'>Correct answers: </span>";
+        q5feedback.innerHTML = "<strong>Incorrect</strong><br><span class='answer'>Correct answers: Chrome, Firefox, Edge</span>";
         q5feedback.style.color = "red";
     }
 
