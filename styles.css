@@ -61,6 +61,7 @@ main {
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 main ul {
@@ -132,7 +133,19 @@ input[type="text"], select {
   display:flex;
   gap:12px;
   flex-wrap:wrap;
-  margin-top:4px
+  margin-top:4px;
+  justify-content: center;
+}
+
+.actions input {
+  background-color: #004080;
+  color: white;
+  padding: 1em;
+  border-radius: 10px;
+  border-style: none;
+  margin-left: 2em;
+  margin-right: 2em;
+  width: 6em;
 }
 
 .summary {
