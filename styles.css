@@ -63,6 +63,20 @@ main {
   margin-top: 20px;
 }
 
+main ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+main ul li {
+  margin-bottom: 10px;
+}     
+main ul ul {
+  list-style-type: circle;
+  margin-left: 40px;
+}   
+
+
 /* Footer */
 footer {
   text-align: center;
